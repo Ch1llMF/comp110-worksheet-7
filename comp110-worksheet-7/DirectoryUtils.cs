@@ -28,15 +28,10 @@ namespace comp110_worksheet_7
 		}
 
         // Return the number of files (not counting directories) below the given directory
-        List<string> AllFiles = new List<string>();
         public static int CountFiles(string directory)
 		{
-            string[] SubDirs = Directory.GetDirectories(directory);
-            AllFiles.AddRange(SubDirs);
-            AllFiles.AddRange(Directory.GetFiles(directory));
-            foreach (string subdir in SubDirs)
-                CountFiles(subdir);
-            
+            int CountFiles = System.IO.Directory.GetFiles(directory, "*.*", SearchOption.AllDirectories).Count();
+            return CountFiles;
 
             // throw new NotImplementedException();
         }
@@ -44,8 +39,17 @@ namespace comp110_worksheet_7
 		// Return the nesting depth of the given directory. A directory containing only files (no subdirectories) has a depth of 0.
 		public static int GetDepth(string directory)
 		{
-            
-            
+            string[] Folders = Directory.GetDirectories(directory);
+            try
+            {
+                foreach (string folder in Directory.GetDirectories(directory))
+                {
+                    
+                }
+            }
+
+            catch (UnauthorizedAccessException) { }
+            return 
             // throw new NotImplementedException();
 		}
 
